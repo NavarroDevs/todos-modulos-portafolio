@@ -1,0 +1,132 @@
+{
+    "productos": [
+        {
+            "nombre": "Arroz tucapel",
+            "descripcion": "El mejor Arroz tucapel grado 2.",
+            "precio": "1600",
+            "stock": 74,
+            "img": "https://www.alimentosmj.cl/701-medium_default/arroz-grado-2-ancho-gran-seleccion-tucapel-1-kg.jpg",
+            "id": "004afd"
+        },
+        {
+            "id": "a9166a",
+            "nombre": "Azucar flor",
+            "descripcion": "El mas fino azucar, Azucar flor 500 g",
+            "precio": "1600",
+            "stock": "90",
+            "img": "https://www.distribuidoraeden.cl/wp-content/uploads/2020/11/AZUCAR-FLOR-IANSA-1-KG.png"
+        },
+        {
+            "nombre": "Chocolate milo",
+            "descripcion": "El mas rico Chocolate en polvo, sobre chico de 28 gr",
+            "precio": "700",
+            "stock": 196,
+            "img": "https://tofuu.getjusto.com/orioneat-prod-ss-upload/KRALxxFZmowDMrA7PLpk",
+            "id": "19c692"
+        },
+        {
+            "nombre": "Crema de leche",
+            "descripcion": "Crema de leche nestle de lata, abre facil de 157 gr",
+            "precio": "1700",
+            "stock": "150",
+            "img": "https://www.somosbringo.cl/wp-content/uploads/2022/04/1049.jpeg",
+            "id": "a658d7"
+        },
+        {
+            "nombre": "Coca-Cola 591 ml",
+            "descripcion": "Gaseosa Coca-Cola 591 ml",
+            "precio": "1400",
+            "stock": "200",
+            "img": "https://tofuu.getjusto.com/orioneat-prod/BhhS84aHqfytd2TD3-7801610000571_1.jpg",
+            "id": "a93127"
+        },
+        {
+            "nombre": "Agua mineral",
+            "descripcion": "Agua mineral cachantun con gas 1.6L",
+            "precio": "1200",
+            "stock": "100",
+            "img": "https://santaisabel.vtexassets.com/arquivos/ids/210202/Agua-mineral-con-gas-16-L.jpg?v=637980714522730000",
+            "id": "2f7494"
+        },
+        {
+            "nombre": "Coca Cola normal 350 ml",
+            "descripcion": "Gaseosa Coca Cola normal 350 ml",
+            "precio": "1000",
+            "stock": "150",
+            "img": "https://tofuu.getjusto.com/orioneat-prod-resized/v4xjkCFwj7okLMzZe-1200-1200.webp",
+            "id": "2aabdd"
+        },
+        {
+            "nombre": "Nectar manzana 1,5",
+            "descripcion": "Jugo Nectar light manzana watts 1,5",
+            "precio": "1900",
+            "stock": "150",
+            "img": "https://images.lider.cl/wmtcl?source=url[file:/productos/620727a.jpg]&sink",
+            "id": "f884d1"
+        },
+        {
+            "id": "5d32d5",
+            "nombre": "Cereal chocapic",
+            "descripcion": "Bolsita de Cereal chocapic nestle de 30 gr",
+            "precio": "600",
+            "stock": "150",
+            "img": "https://r.btcdn.co/r/eyJzaG9wX2lkIjo0MDY0LCJnIjoiMTAwMHgifQ/f94f9d776de57d4/654035-7613031291441.jpg"
+        },
+        {
+            "nombre": "Cereal nestun",
+            "descripcion": "Cereal nestun de 250 gr, 5 cereales",
+            "precio": "2300",
+            "stock": "200",
+            "img": "https://images.lider.cl/wmtcl?source=url[file:/productos/883184a.jpg]&sink",
+            "id": "3c6c67"
+        },
+        {
+            "nombre": "Barra proteina",
+            "descripcion": "Barra proteina snack yoghurt berries your goal 42 gr",
+            "precio": "1000",
+            "stock": "180",
+            "img": "https://s.cornershopapp.com/product-images/587830.jpg?versionId=ONq6tMWOD.med9OfK2K2mK0d1_vmGXua",
+            "id": "210128"
+        },
+        {
+            "nombre": "Cereal estrellitas",
+            "descripcion": "Cereal estrellitas nestle caja 330 gr",
+            "precio": "3500",
+            "stock": "100",
+            "img": "https://unimarc.vtexassets.com/arquivos/ids/197764-480-480/000000000000740142-UN-01.jpg?v=637284632013200000",
+            "id": "f50342"
+        },
+        {
+            "nombre": "Bombon",
+            "descripcion": "Bon o bon leche arcor 15 gr",
+            "precio": "300",
+            "stock": "500",
+            "img": "https://tofuu.getjusto.com/orioneat-prod-resized/e4vBZq9c57c45JXjK-1200-1200.webp",
+            "id": "54795d"
+        },
+        {
+            "nombre": "Chocolate costa rolls",
+            "descripcion": "Chocolate costa rolls blanco 140 grs",
+            "precio": "1600",
+            "stock": "100",
+            "img": "https://cdn.shopify.com/s/files/1/0287/1256/6887/products/Rolls-Nuts_1024x1024.jpg?v=1606942126",
+            "id": "c30497"
+        },
+        {
+            "nombre": "Chocolate costa rolls",
+            "descripcion": "Kit kat 4 fingr milk 41.5 g",
+            "precio": "1100",
+            "stock": "300",
+            "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPrTxSCK8BXCo7nF1QIxuaks3kBWS3-QFK6Q&usqp=CAU",
+            "id": "31d285"
+        },
+        {
+            "nombre": "Orly chocolate",
+            "descripcion": "Orly chocolate frutilla ambrosoli 115 gr",
+            "precio": "1300",
+            "stock": "140",
+            "img": "https://santaisabel.vtexassets.com/arquivos/ids/180843/Chocolate-Orly-berries-115-g.jpg?v=637662990939330000",
+            "id": "0e193e"
+        }
+    ]
+}

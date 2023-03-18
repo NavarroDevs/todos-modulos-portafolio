@@ -1,0 +1,112 @@
+{
+    "ventas": [
+        {
+            "id": "8ef7bd",
+            "fecha": "23-02-2023",
+            "productos": [
+                {
+                    "id": "f9ff02",
+                    "cantidad": 1
+                }
+            ],
+            "total": 45000
+        },
+        {
+            "id": "9e158e",
+            "fecha": "23-02-2023",
+            "productos": [
+                {
+                    "id": "53c4ed",
+                    "cantidad": 1
+                }
+            ],
+            "total": 15000
+        },
+        {
+            "id": "c419c8",
+            "fecha": "23-02-2023",
+            "productos": [
+                {
+                    "id": "53c4ed",
+                    "cantidad": "2"
+                }
+            ],
+            "total": 30000
+        },
+        {
+            "id": "046d1c",
+            "fecha": "23-02-2023",
+            "productos": [
+                {
+                    "id": "f9ff02",
+                    "cantidad": 1
+                },
+                {
+                    "id": "53c4ed",
+                    "cantidad": 1
+                }
+            ],
+            "total": 60000
+        },
+        {
+            "id": "c5398c",
+            "fecha": "23-02-2023",
+            "productos": [
+                {
+                    "id": "f9ff02",
+                    "cantidad": "2"
+                }
+            ],
+            "total": 90000
+        },
+        {
+            "id": "d362e3",
+            "fecha": "23-02-2023",
+            "productos": [
+                {
+                    "id": "53c4ed",
+                    "cantidad": 2
+                },
+                {
+                    "id": "f9ff02",
+                    "cantidad": 1
+                }
+            ],
+            "total": 75000
+        },
+        {
+            "id": "5cea9d",
+            "fecha": "02-03-2023",
+            "productos": [
+                {
+                    "id": "004afd",
+                    "cantidad": 5
+                },
+                {
+                    "id": "19c692",
+                    "cantidad": 2
+                },
+                {
+                    "id": "19c692",
+                    "cantidad": 1
+                }
+            ],
+            "total": 10100
+        },
+        {
+            "id": "c10e1f",
+            "fecha": "02-03-2023",
+            "productos": [
+                {
+                    "id": "004afd",
+                    "cantidad": 1
+                },
+                {
+                    "id": "19c692",
+                    "cantidad": 1
+                }
+            ],
+            "total": 2300
+        }
+    ]
+}

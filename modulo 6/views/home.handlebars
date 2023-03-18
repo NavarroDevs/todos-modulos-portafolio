@@ -1,0 +1,135 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+
+<section class="listado_productos">
+    <div class="row">
+
+    </div>
+</section>
+
+
+<script>
+    
+
+
+    //FUNCIÓN QUE PERMITE CARGAR LAS CARDS CON EL DETALLE DE LOS PRODUCTOS.
+    const cargarProductos = (productos) => {
+        let contenedorProductos = document.querySelector(".listado_productos .row");
+        if(productos.length > 0){
+      
+        contenedorProductos.innerHTML = ""; //limpiamos elemento
+        let acumuladorCards = "";
+        productos.forEach(producto => {
+            let template = `
+                       <div class="col-sm-12 col-md-3 col-lg-3">
+                       <div class="container text-center mt-1">
+                       <div class="row text-center mt-1">
+                       <div class="card text-white bg-secondary mb-3 card border-primary mb-3" style="width: 18rem">
+                        <img src="${producto.img}"  width="150" height="210" class="card-img-top" alt="${producto.nombre}">
+                        
+                        <div class="card-body">
+                            <h5 class="card-title">${producto.nombre}</h5>
+                            <p class="card-text">${producto.descripcion}</p>
+                            <p class="card-text">Precio: ${producto.precio}</p>
+                            <p class="card-text">Stock: ${producto.stock}</p>
+                            <p <button class="btn btn-primary" onclick="agregarCarro('${producto.id}', ${producto.stock})">Agregar al carro</button></p>
+                            <a href="/productos/${producto.id}" class="btn btn-success">Ver Detalle</a>
+
+                            
+                        </div>
+                    </div>
+                </div>
+              </div>
+        
+  <div class="card text-center">
+    <div class="card-header">
+      <a href="#" class="btn btn-secondary btn-sm">↑ Top</a>
+    </div>
+  </div>
+
+</div>
+
+
+                `
+            acumuladorCards+= template;
+
+            
+        })
+        contenedorProductos.innerHTML = acumuladorCards;
+         
+              
+  
+        }else {
+            contenedorProductos.innerHTML = "<h2 class='text-center'>No hay productos para mostrar</h2>"
+        }
+
+    }
+
+    //PETICIÓN AL SERVIDOR PARA CARGAR PRODUCTOS.
+    fetch("http://localhost:3000/api/productos")
+        .then(response => response.json())
+        .then(data => {
+            if(data.code == 500){
+                console.log(data.message)
+            }else{
+                data.productos = data.productos.filter(producto => producto.stock > 0);
+              cargarProductos(data.productos)
+            }
+        })
+        .catch(error => {
+            console.log(error)
+            alert("Algo ha salido mal al cargar los productos.")
+        })
+
+        //agregamos clase active al link de la página concurrida
+        document.querySelector("#linkHome").classList.add("active");
+
+        //FUNCIÓN QUE PERMITE AGREGAR PRODUCTOS AL CARRO
+        const agregarCarro = (id, stock) => {
+            try{
+
+                let storageCarro = JSON.parse(localStorage.getItem("productos")) || []
+
+
+                let buscarProducto = storageCarro.find(producto => producto.id == id)
+                if(buscarProducto){
+                    if(buscarProducto.cantidad >= stock){
+                        buscarProducto.cantidad = stock
+                        alert("Usted alcanzó el stock máximo de productos: " + stock);
+                    }else {
+                        buscarProducto.cantidad = buscarProducto.cantidad +1
+                        
+                    }
+                    
+                }else {
+                    storageCarro.push({id, cantidad: 1})
+                    
+                    }
+
+
+
+window.alert("Producto agregado correctamente");
+
+
+                
+                localStorage.setItem("productos", JSON.stringify(storageCarro))
+                location.reload()
+                  
+   
+            }catch(error){
+                alert("Ha ocurrido un error al cargar el producto, intente nuevamente.")
+                localStorage.setItem("productos", "[]")
+                location.reload();
+            }
+
+
+
+    
+
+        }
+
+
+                           
+
+</script>
+
