@@ -1,0 +1,39 @@
+
+*{
+
+  padding: 5px 0px 0px 3px;
+}
+
+.nav-item{
+
+  padding: 5px 10px;
+}
+
+
+.contenedor-img-carrito{
+width: 1px;
+height: 1px;
+padding: 5px 5px 5px 5px;
+}
+
+
+.navbar-brand{
+  display: flex;
+  padding: 5px 5px 20px 0px;
+  font-size: 15px;
+  font-family: Comic Sans MS;
+  }
+
+
+.contenedor-img-footer img {
+  height: 100%;
+}
+
+html {
+   
+  scroll-behavior: smooth;
+  
+  
+  
+}
+
