@@ -1,6 +1,6 @@
 # todos-modulos-portafolio
 
-rEPOSITORIO DE PORTAFOLIOS:
+REPOSITORIO DE PORTAFOLIOS:
 
 Anexo de todos los portafolios desarrollados en cada uno de los modulos de aprendisaje, donde se construt¿yern los portafolios de acuerdo a los temas abarcados en cada uno de los modulos, aqui una breve descripcion de los temas abarcados:
 
