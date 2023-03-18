@@ -22,3 +22,4 @@ Post/productos: registra un producto y lo almacena en el archivo json(productos.
 put productos recibe los datos del producto que se haga en la consulta.
 delete/productos: recibe el id de un producto registrado y lo elimina.
 get/ventas devuelve todas las ventas almacenadas(ventas.json)
+y asi con todas las funciones necesarias tanto en el frontend como en el backed para dar funcionamiento al carrito de ventas
