@@ -1,0 +1,91 @@
+<h2 class="text-center">Vista de publicacion/Solo usuarios Registrados</h2>
+
+
+{{#if error}}
+<h2 class="text-center mt-3">{{error}}</h2>
+
+{{else}}
+    <h3 class="text-center">Bienvenido usuario: {{usuario.email}}</h3>
+<br>
+<br>
+
+
+
+
+ <form action="" id="addLibro">
+        titulo del libro: <input type="text" id="addTitulo" name="titulo" placeholder="Ingrese el titulo"  required>
+        <br>
+        <br>
+        Informacion sobre el libro: <textarea name="contenido" maxlength = "4000" cols="150" rows="3" id="addContenido" placeholder="breve reseña del libro" required></textarea>
+         <small id="Help" class="form-text text-muted">Nos recomienda el libro?,es bueno?,es malo?.</small>
+    <br>
+    <br> 
+   
+        seleccione una categoría para el libro:
+        <select name="idCategoria" id="addCategoria" required>
+            {{#each categorias}}
+            <option value="{{this.id}}">{{this.nombre}}</option>
+            {{/each}}
+        </select>
+        <br>
+         Imagen: <input type="file" name="foto" required>
+        <h6 class="text-center">  
+        <button class="btn btn-primary mt-3" type="submit">Enviar</button>
+         <br>
+          <br>
+         <button type="reset" align="center" class="btn btn-secondary btn">Limpiar</button> 
+       </h6>
+    <br>
+    <br> 
+    </form>
+
+
+
+
+{{/if }}
+
+
+<script>
+
+    let formulario = document.getElementById("addLibro");
+    formulario.addEventListener("submit", (event) => {
+        event.preventDefault();
+        console.log(addTitulo.value, addContenido.value, addCategoria.value)
+        
+//para realizar la publicacion el request
+        let myHeaders = new Headers();
+        myHeaders.append("authorization", "Bearer " + localStorage.getItem("jwt"));
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: new FormData(formulario),
+            redirect: 'follow'
+        };
+
+        fetch("/api/v1/publicar", requestOptions)
+        .then(response => {
+            if(response.status == 413){
+                return alert("Imagen supera el limite permitido")
+            }
+            return response.json()
+        })
+        .then(result => {
+            if(result.code ==201){
+                alert(result.message)
+                formulario.reset();
+            }else{
+                alert(result.message)
+            }
+        })
+        .catch(error => console.log('error', error));
+
+
+    })
+</script>
+
+<style>
+    #addLibro input, textarea, select{
+        display: block;
+    }
+</style>
