@@ -1,0 +1,39 @@
+<div class="container mb-5", align = "center">
+  <div class="row mt-3", align = "center">
+    
+    <div class="col-sm-12 col-md-6", style="text-align:center;">
+      <h3>{{producto.nameProduct}}</h3>
+      <h2>{{producto.description}}</h2>
+
+      <ul>
+        <li>{{producto.det1}}</li>
+        <li>{{producto.det2}}</li>
+        <li>{{producto.det3}}</li>        
+      </ul>
+      <table class="table table-bordered table-m" border="1" align="center">
+        <thead>
+          <tr>
+            <th>Precio</th>
+            <th>Descuento</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{producto.value}}</td>
+            <td>{{producto.discount}}</td>
+            <td>{{restarHelper producto.value producto.discount}}</th>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-primary" onclick="addToCart('{{producto.id}}')">Agregar al Carro</button>
+    </div>
+
+<div>
+      <img src="/imagenes/{{producto.image}}" alt="{{producto.description}}">
+  </div>
+
+
+
+  </div>
+</div>

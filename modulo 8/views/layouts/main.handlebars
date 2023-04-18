@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+
+    <link href="./assets/css/styles.css" rel="stylesheet" />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+
+   <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>  
+
+      <title>Mercado Fresco</title>
+
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+    <!-- HOJA DE ESTILOS PROPIA -->
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <title>My Proyecto</title>
+  </head>
+  <body>
+
+
+
+    <!-- inicio nabar -->
+    <span class="border border-dark">
+      <nav class="navbar navbar-expand-sm text-bg-dark navbar-dark">
+        <div class="container-fluid px-3">
+         
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarScroll"
+            aria-controls="navbarScroll"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
+            
+            <ul
+              class="navbar-nav ms-auto my-2 my-3 navbar-nav-scroll"
+              style="--bs-scroll-height: 40px"
+            >
+
+           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+           
+
+       <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Principal</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/productos">Productos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/mantenedor">Mantenedor</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/ventas">Ventas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/contacto">Contacto</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/carro">Carrito</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" id="amount-products"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/login">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/register">Registro</a>
+              </li>
+
+         <li class="nav-item">
+          <a class="nav-link active" href="" id="linkLogout">Logout</a>
+          </li>
+
+
+            </ul>
+
+
+
+          </ul>
+        </div>
+
+
+                
+                <!-- hasta aqui el carrito -->
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </span>
+
+    <!-- FIN NAVBAR  -->
+
+<figure class="text-center">
+  <div class="p-1 bg-dark bg-opacity-10 border border-secondary border-start-0 rounded-end">
+  <blockquote class="blockquote">
+    <h2 class="display-4 my-3 mx-5"><p class=text-success >MINIMARKET MERCADO FRESCO</h2></p>
+  </blockquote>
+  <figcaption class="blockquote-footer">
+   Donde la atencion y productos <cite title="Título fuente">Son Siempre Frescos-</cite>
+  </figcaption>
+  </div>
+</figure>
+
+<br>
+
+
+<script>
+  function logout() {
+  // Elimina el token JWT almacenado en el localStorage
+  localStorage.removeItem('jwt');
+  // Redirige al usuario a la página principal o a la página de inicio de sesión
+  window.location.href = '/';
+}
+</script>
+<script>
+  const updateUsuariosCount = async () => {
+  const response = await fetch('/api/v1/usuarios/count');
+  const data = await response.json();
+  const count = data.count;
+  const countElement = document.getElementById('usuarios-count');
+  countElement.textContent = `Usuarios (${count})`;
+};
+
+updateUsuariosCount();
+</script>
+
+
+
+
+
+<br>
+<script>
+
+    let linkLogout = document.getElementById("linkLogout");
+    linkLogout.addEventListener("click", (event) =>{
+        event.preventDefault();
+        localStorage.clear();
+        alert("Ha sido cerrada la sesión");
+        location.href = "/";
+    });
+
+    if(localStorage.getItem("jwt")){
+        linkLogin.style.display = "none";
+        linkRegistro.style.display = "none";
+        
+
+    }else {
+        linkCarro.style.display = "none";
+        linkVentas.style.display = "none";
+        linkMantenedor.style.display = "none";
+        linkProductos.style.display = "none";
+        linkLogout.style.display = "none";
+        
+        
+        
+
+    }
+    
+
+    let linkSecreto = document.getElementById("linkSecreto");
+
+    linkSecreto.addEventListener("click", (event)=> {
+        event.preventDefault();
+        location.href= "/secreto?token="+localStorage.getItem("jwt")
+    })
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<main class="container">
+        {{{body}}}
+
+
+
+<br>
+<br>
+<!-- INICIO FOOTER -->
+
+<footer >
+  <div class="card text-center">
+    <div class="card-header">
+      Todos los Derechos Reservados Pedro Navarro 2023,
+      correo:pedronavarro16@gmail.com
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Gracias por preferir la economia de Mercado Fresco siempre cerca de ti</h5>
+      <p class="card-text">El Minimarket Mercado Fresco se caracteriza por tener un gran stock de productos y estar siempre preparados para fechas especiales como Fiestas Patrias, Navidad y Año Nuevo...</p>
+      <a href="#" class="btn btn-primary">Ir Arriba</a>
+    </div>
+    <div class="card-footer text-muted">
+      Prefiera productos frecos y de calidad prefiera Mercado Fresco
+    </div>
+  </div>
+  </footer>
+  <!-- FIN FOOTER -->
+
+
+<script
+
+
+  </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="/js/toastr.min.js"></script>
+    <script src="/js/functions.js"></script>
+    <script src="/js/carro.js"></script>
+
+  </body>
+
+
+
+
+
+{{!-- Incluir el archivo login-modal.handlebars --}}
+    {{> login-modal}}
+</body>
+<script>
+  console.log('El archivo JavaScript se ha cargado correctamente');
+
+  const likeBtns = document.querySelectorAll('.like-btn');
+  const dislikeBtns = document.querySelectorAll('.dislike-btn');
+  const modal = document.getElementById('login-modal');
+  const closeBtn = document.querySelector('.close');
+
+const isAuthenticated = () => {
+  // Verifica si existe un token en el Local Storage y no está vacío
+  return localStorage.getItem('jwt') !== null && localStorage.getItem('jwt') !== '';
+};
+console.log('isAuthenticated:', isAuthenticated());
+
+
+
+  if (isAuthenticated()) {
+    // Oculta el modal si el usuario está autenticado
+    modal.style.display = 'none';
+  }
+
+  likeBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (!isAuthenticated()) {
+        modal.style.display = 'block';
+      }
+    });
+  });
+
+  dislikeBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (!isAuthenticated()) {
+        modal.style.display = 'block';
+      }
+    });
+  });
+
+  closeBtn.onclick = () => {
+    modal.style.display = 'none';
+  };
+
+  window.onclick = (event) => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  };
+</script>
+<script>
+  // Selecciona el elemento con el ID 'linkInventario'
+  const linkInventario = document.getElementById('linkInventario');
+
+  // Agrega un controlador de eventos de clic al elemento 'linkInventario'
+  linkInventario.addEventListener('click', (event) => {
+    if (!isAuthenticated()) {
+      event.preventDefault();
+      modal.style.display = 'block';
+    }
+  });
+</script>
+<script>
+  // Selecciona el elemento con el ID 'linkInventario'
+  const linkCarro = document.getElementById('linkCarro');
+
+  // Agrega un controlador de eventos de clic al elemento 'linkCarro'
+  linkCarro.addEventListener('click', (event) => {
+    if (!isAuthenticated()) {
+      event.preventDefault();
+      modal.style.display = 'block';
+    }
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

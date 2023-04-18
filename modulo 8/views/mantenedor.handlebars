@@ -1,0 +1,195 @@
+<div class="container mt-3" align = "center" style="min-height: 600px;">
+  <div style="text-align: center;" class="mb-3" align = "center">
+    <button class="btn btn-primary" onclick="showModal()"><i class="fa-sharp fa-regular fa-plus"></i>Nuevo Producto</button>    
+  </div>
+
+  {{> tabla_productos}}
+</div>
+
+{{> modal_productos}}
+
+<script>
+  
+  var showModal = () => {    
+    $('#{{id_modal}}').modal('show');
+    cleanFields();  
+  }
+
+  var loadManteinerTb = (productos) => {    
+    
+    bodyTbProducts.innerHTML = "";
+
+    let acumuladorFilas = "";
+
+    
+    productos.forEach(producto => {
+      let template =`<tr>
+        <td>${producto.sku}</td>
+        <td><img src="/imagenes/${producto.image}" alt="{producto.image}}"></td>
+        <td>${producto.nameProduct}</td>
+        <td>${producto.description }</td>
+        <td>${producto.det1}</td>
+        <td>${producto.det2}</td>
+        <td>${producto.det3}</td>
+        <td>${producto.value}</td>
+        <td>${producto.discount}</td>
+        <td>${producto.stock}</td>
+
+        <td><button class="btn btn-primary" onclick="editProduct('${producto.id}')" btn-sm">actualizar</button></td>
+        
+        <td><button class="btn btn-danger" onclick="deleteProduct('${producto.id}')">eliminar</button></td>
+      </tr>`
+      acumuladorFilas += template;
+    });
+  
+    bodyTbProducts.innerHTML = acumuladorFilas;
+
+  }
+
+  var editProduct = (id) => {
+
+    fetch("/api/v1/productos/"+id)
+      .then(response => response.json())
+      .then(data => {
+        if (data.code == 500) {
+          console.log('Error: ', data.message);
+        }
+        
+        cleanFields();
+        
+        let producto = data.producto;
+        $('#id').val(producto.id);
+
+        nameProduct.value = producto.nameProduct,
+        description.value = producto.description,
+        image.value       = producto.image,
+        det1.value        = producto.det1,
+        det2.value        = producto.det2,
+        det3.value        = producto.det3,
+        value.value       = producto.value,
+        discount.value    = producto.discount,
+        stock.value       = producto.stock,
+        
+        $('#{{id_modal}}').modal('show');
+
+      }).catch(err => {
+        console.log('Error: ', err);
+      })
+    
+    
+  }
+  
+  var deleteProduct = (id) => {        
+      
+    Swal.fire({
+      title: 'ATENCIÓN',
+      text: 'Desea eliminar el producto con ID: '+id,
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.value) {
+        fetch("/api/v1/producto/" + id, { method: "DELETE" })
+        .then(response => response.json())
+        .then(data => {
+          if (data.code == 500 || data.code == 400) {
+            toastr.error(data.message);
+          } else {
+            toastr.success(data.message);
+            loadManteinerTb(data.productos);
+          }
+        })
+        .catch(error => {
+          console.log(error)
+          toastr.error("Algo ha salido mal al cargar los productos.", error);
+        })
+      } 
+    });
+
+    
+    
+  }
+  
+  var cleanFields = () => {
+    id.value         = '';
+    nameProduct.value = '';
+    description.value = '';
+    image.value       = '';
+    det1.value        = '';
+    det2.value        = '';
+    det3.value        = '';
+    value.value       = '';
+    discount.value    = '';
+    stock.value       = '';
+  }
+
+  //EVENTO SUBMIT FORMULARIO ACTUALIZAR NUEVOS PRODUCTOS
+  formProductos.addEventListener("submit", (event) => {
+    
+    event.preventDefault();
+
+    var fieldsValidate = {
+      nameProduct : { type: 'input', name: 'Nombre' },
+      description : { type: 'input', name: 'Descrición' },
+      image       : { type: 'input', name: 'Imagen' },
+      det1        : { type: 'input', name: 'Detalle 1' },
+      det2        : { type: 'input', name: 'Detalle 2' },
+      det3        : { type: 'input', name: 'Detalle 3' },
+      value       : { type: 'input', name: 'Valor' },
+      discount    : { type: 'input', name: 'Descuento' },
+      stock       : { type: 'input', name: 'Stock' }
+    };
+
+    //Si paso todas las validaciones
+    if (validateForm(fieldsValidate, 'formProductos', false)) {
+      
+      let id = $('#id').val();
+
+      let objProducto = {            
+        nameProduct : nameProduct.value,
+        description : description.value,
+        image       : image.value,
+        det1        : det1.value,
+        det2        : det2.value,
+        det3        : det3.value,
+        value       : value.value,
+        discount    : discount.value,
+        stock       : stock.value,
+      }
+  
+      if(id!=''){
+        Object.entries({ id: id }).forEach(([key, value]) => { objProducto[key] = value });
+      }
+
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");      
+
+      var requestOptions = {
+        method: id == '' ? "POST" : "PUT",
+        headers: myHeaders,
+        body: JSON.stringify(objProducto)
+      }
+            
+      fetch("/api/v1/productos", requestOptions)
+        .then(response => response.json())
+        .then(data => {
+          if (data.code == 500 || data.code == 400) {
+            console.log(data.message)
+            toastr.error(data.message);
+          } else {
+            toastr.success(data.message);               
+            $('#{{id_modal}}').modal('hide');     
+            loadManteinerTb(data.producto);
+          }
+        })
+        .catch(error => {    
+          console.log('Error: ',error);
+          toastr.error(error,'No se pudieron cargar los productos.');          
+        })      
+    }
+
+  });
+
+</script>

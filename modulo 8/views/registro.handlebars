@@ -1,0 +1,72 @@
+<h1 class="text-center">Registro</h1>
+
+<form action="" id="formRegistro">
+    Nombre: <input type="text" class="from-control" id="registroNombre"placeholder="Ingrese su Nombre" required>
+    Email: <input type="email" class="from-control" id="registroEmail" placeholder="Ingrese su Email" required>
+    <small id="emailHelp" class="form-text text-muted">Nunca compartiremos su correo electrónico con nadie más.</small>
+    <br>
+    Password: <input type="password" class="from-control" id="registroPassword1" placeholder="Password" required>
+    Confirme password: <input type="password" class="from-control" id="registroPassword2" placeholder="Reingrese su password" required>
+    <br>
+    <div class="center">
+    <button type="submit" class="btn btn-primary mt-3 btn-lg">Registrar</button>
+    <br>
+    <button type="reset" align="center" class="btn btn-secondary mt-3 btn-lg">Limpiar</button> 
+    </div>
+</form>
+
+
+<style>
+    input{
+        display:block;
+        width: 100%;
+    }
+
+    form{
+          width: 400px;
+    margin: auto;
+    }
+</style>
+
+<script>
+
+    let formRegistro = document.getElementById("formRegistro");
+
+    formRegistro.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        if(registroPassword1.value != registroPassword2.value){
+            return alert("Contraseñas no coinciden entre si.")
+        }
+
+        var raw = JSON.stringify({
+        "name": registroNombre.value,
+        "email": registroEmail.value,
+        "password": registroPassword1.value
+        });
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
+
+        fetch("/api/v1/registro", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            if(result.code == 201){
+                alert(result.message)
+                location.href = "/login";
+            }else if(result.code == 400){
+                alert(result.message)
+            }else{
+                alert("Registro fallido, intente nuevamente.")
+            }
+        })
+        .catch(error => console.log('error', error));
+    })
+</script>
